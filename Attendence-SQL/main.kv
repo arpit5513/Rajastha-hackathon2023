@@ -1,0 +1,1023 @@
+Screen_Manager:
+    Screen_Function:
+    Screen_Admin_Login:
+    Screen_Admin_Panel:
+    Screen_Faculty_Login:
+    Screen_Faculty_Panel:
+    Screen_Add_Faculty:
+    Screen_Update_Faculty:
+    Screen_Remove_Faculty:
+    Screen_Attendence_Record:
+    Screen_Faculty_Record:
+    Screen_Camera_Panel:
+    Screen_Master_Panel:
+
+<Screen_Function>:
+    name: "Function"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+
+    MDCard:
+        size_hint: .6,.7
+        pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+        md_bg_color:(33/225, 29/225, 33/225,.85)
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+    
+        MDLabel:
+            id: Welcome_label
+            theme_text_color: 'Custom'
+            text_color: app.theme_cls.primary_color
+            text: "Face Recognition System"
+            #pos_hint: {"center_x": 0.67 ,"center_y": 0.5}
+            halign: 'center'
+            font_size: 40
+            padding_y: 15
+        
+        MDRoundFlatButton:
+            text:"Admin Panel"
+            font_size: 25 
+            pos_hint:{'center_x': .5}
+            on_press:
+                app.root.current = "Admin_Login"
+                root.manager.transition.direction = 'up'
+
+
+        MDRoundFlatButton:
+            text:"Faculty Panel"
+            font_size: 25 
+            pos_hint:{'center_x': .5}
+            on_press: 
+                app.root.current = "Faculty_Login"
+                root.manager.transition.direction = 'up'
+    
+        MDIconButton:
+            icon: "camera"
+            pos_hint:{'center_x': .5}
+            md_bg_color: app.theme_cls.primary_color
+            on_press: 
+                app.root.current = "Camera_Panel"
+                root.manager.transition.direction = 'up'
+            on_release:
+                app.Camera_Start()
+
+<Screen_Admin_Login>:
+    name: 'Admin_Login'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    MDCard:
+        size_hint: .6,.7
+        pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+        md_bg_color:(33/225, 29/225, 33/225,.85)
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        
+
+        MDIconButton:
+            icon: "close"
+            pos_hint: {"center_x": .9, "center_y": .1}
+            icon_size: 10
+            md_bg_color:app.theme_cls.primary_color
+            on_press: 
+                app.root.current = "Function"
+                root.manager.transition.direction = 'down'
+
+        MDLabel:
+            id: label
+            theme_text_color: 'Custom'
+            text_color: app.theme_cls.primary_color
+            text: "Admin Panel"
+            #pos_hint: {"center_x": 0.67 ,"center_y": 0.5}
+            halign: 'center'
+            font_size: 40
+            padding_y: 15
+        
+        MDTextField:
+            mode: "round"
+            id: user_name
+            hint_text: "Username"
+            icon_right: "account"
+            size_hint_x: None
+            theme_text_color: 'Custom'
+            text_color:(2/255, 23/255, 12/255,1)
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+            spacing: 20     
+
+        MDTextField:
+            mode: "round"
+            id: user_password
+            hint_text: "Password"
+            icon_right: "key"
+            password: True
+            theme_text_color: 'Custom'
+            text_color:(2/255, 23/255, 12/255,1)
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+            spacing: 20 
+
+        MDRoundFlatButton:
+            text:"Log in"
+            font_size: 25 
+            pos_hint:{'center_x': .5}
+            on_press:
+                app.Admin_Login()
+
+<Screen_Faculty_Login>:
+    name: 'Faculty_Login'
+
+<Screen_Admin_Panel>:
+    name: 'Admin_Panel'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDCard:
+            size_hint: .2,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,112/225,.15)
+            orientation: 'vertical'
+            
+            MDRectangleFlatButton:
+                text: "Add Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Add_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Remove Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Remove_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Update Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Update_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Attendence Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Attendence_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Faculty Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Faculty_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Master Department"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Master_Panel"
+                    root.manager.transition.direction = 'left'
+            MDIconButton:
+                icon:"backspace"
+                on_release:
+                    app.root.current = "Function"
+                    root.manager.transition.direction = 'left'
+        MDCard:
+            size_hint: .8,1
+            pos_hint: {"center_x": 0.5,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(160/225,50/225,168/225)
+            orientation: 'vertical'
+                
+            FitImage:
+                id: bg_image
+                source: "admin.png"
+                size_hint: .98,.9
+                allow_stretch: True
+                pos_hint: {"center_x":.5,"center_y":.5}
+                radius: [36, 36, 36, 36, ]
+
+
+<Screen_Add_Faculty>:
+    name: 'Add_Faculty'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDCard:
+            size_hint: .2,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,112/225,.15)
+            orientation: 'vertical'
+            
+            MDRectangleFlatButton:
+                text: "Add Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Add_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Remove Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Remove_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Update Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Update_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Attendence Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Attendence_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Faculty Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Faculty_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Master Department"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Master_Panel"
+                    root.manager.transition.direction = 'left'
+            MDIconButton:
+                icon:"backspace"
+                on_release:
+                    app.root.current = "Admin_Panel"
+                    root.manager.transition.direction = 'left'
+        MDCard:
+            size_hint: .8,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,182/225)
+            orientation: 'vertical'
+            
+            MDCard:
+                pos_hint: {"center_x": 0.5 ,"center_y": 0.5}            
+                size_hint: .96,.9
+                padding: 12
+                spacing: 12
+                md_bg_color:(215/225,215/225,215/225)
+                orientation: 'vertical'
+                    
+                MDLabel:
+                    id: label
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    text: "Faculty Information"
+                    #pos_hint: {"center_x": 0.67 ,"center_y": 0.5}
+                    halign: 'center'
+                    font_size: 40
+                    padding_y: 15
+                
+                MDTextField:
+                    mode: "round"
+                    id: faculty_name
+                    hint_text: "Name"
+                    icon_right: "account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20   
+                
+                MDTextField:
+                    mode: "round"
+                    id: faculty_dob
+                    hint_text: "DOB: DD/MM/YYYY"
+                    icon_right: "calendar-account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20   
+
+                #AnchorLayout:
+                #    id:department
+                Spinner:
+                    id:faculty_department
+                    text: "Department"
+                    size_hint_x: .2
+                    size_hint_y: .15
+                    background_color: app.theme_cls.primary_light
+                    pos_hint: {"center_x": 0.5}
+                    #values: ["CSE","Mechanical","Electrical","Accounts","Others"]
+                MDTextField:
+                    mode: "round"
+                    id: faculty_id
+                    hint_text: "Email ID"
+                    icon_right: "account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20  
+                
+                MDTextField:
+                    mode: "round"
+                    id: faculty_password
+                    hint_text: "Password"
+                    icon_right: "key"
+                    password:True
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20  
+
+                MDRectangleFlatButton:
+                    text:"Upload Picture"
+                    font_size: 25 
+                    pos_hint:{'center_x': .5}
+                    on_press:
+                        app.File_Chooser() 
+
+<Screen_Update_Faculty>:
+    name: 'Update_Faculty'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDCard:
+            size_hint: .2,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,112/225,.15)
+            orientation: 'vertical'
+            
+            MDRectangleFlatButton:
+                text: "Add Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Add_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Remove Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Remove_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Update Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Update_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Attendence Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Attendence_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Faculty Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Faculty_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Master Department"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Master_Panel"
+                    root.manager.transition.direction = 'left'
+            MDIconButton:
+                icon:"backspace"
+                on_release:
+                    app.root.current = "Admin_Panel"
+                    root.manager.transition.direction = 'left'
+        MDCard:
+            size_hint: .8,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,182/225)
+            orientation: 'vertical'
+            
+            MDCard:
+                pos_hint: {"center_x": 0.5 ,"center_y": 0.5}            
+                size_hint: .96,.9
+                padding: 12
+                spacing: 12
+                md_bg_color:(215/225,215/225,215/225)
+                orientation: 'vertical'
+                    
+                MDLabel:
+                    id: label
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    text: "Faculty Update Profile"
+                    #pos_hint: {"center_x": 0.67 ,"center_y": 0.5}
+                    halign: 'center'
+                    font_size: 40
+                    padding_y: 15
+                
+                MDTextField:
+                    mode: "round"
+                    id: faculty_name
+                    hint_text: "Name"
+                    icon_right: "account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20   
+                
+                MDTextField:
+                    mode: "round"
+                    id: faculty_dob
+                    hint_text: "DOB: DD/MM/YYYY"
+                    icon_right: "calendar-account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20   
+
+                Spinner:
+                    id:faculty_department
+                    text: "Department"
+                    size_hint_x: .2
+                    size_hint_y: .15
+                    background_color: app.theme_cls.primary_light
+                    pos_hint: {"center_x": 0.5}
+                MDTextField:
+                    mode: "round"
+                    id: faculty_id
+                    hint_text: "Email ID"
+                    icon_right: "account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20  
+                
+                MDTextField:
+                    mode: "round"
+                    id: faculty_password
+                    hint_text: "Password"
+                    icon_right: "key"
+                    password:True
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20  
+
+                MDRectangleFlatButton:
+                    text:"Upload Picture"
+                    font_size: 25 
+                    pos_hint:{'center_x': .5}
+                    on_press:
+                        app.File_Update_Chooser() 
+
+
+<Screen_Remove_Faculty>:
+    name: 'Remove_Faculty'
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDCard:
+            size_hint: .2,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,112/225,.15)
+            orientation: 'vertical'
+            
+            MDRectangleFlatButton:
+                text: "Add Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Add_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Remove Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Remove_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Update Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Update_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Attendence Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Attendence_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Faculty Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Faculty_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Master Department"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Master_Panel"
+                    root.manager.transition.direction = 'left'
+            MDIconButton:
+                icon:"backspace"
+                on_release:
+                    app.root.current = "Admin_Panel"
+                    root.manager.transition.direction = 'left'
+        MDCard:
+            size_hint: .8,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,182/225)
+            orientation: 'vertical'
+            
+            MDCard:
+                pos_hint: {"center_x": 0.5 ,"center_y": 0.5}            
+                size_hint: .96,.9
+                padding: 12
+                spacing: 12
+                md_bg_color:(215/225,215/225,215/225)
+                orientation: 'vertical'
+                    
+                MDLabel:
+                    id: label
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    text: "Faculty Remove Profile"
+                    #pos_hint: {"center_x": 0.67 ,"center_y": 0.5}
+                    halign: 'center'
+                    font_size: 40
+                    padding_y: 15
+                
+                MDTextField:
+                    mode: "round"
+                    id: faculty_name
+                    hint_text: "Name"
+                    icon_right: "account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20   
+
+                MDRectangleFlatButton:
+                    text:"Remove"
+                    font_size: 25 
+                    pos_hint:{'center_x': .5}
+                    on_press:
+                        app.Remove_Faculty()
+
+<Screen_Faculty_Record>:
+    name: 'Faculty_Record'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDCard:
+            size_hint: .2,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,112/225,.15)
+            orientation: 'vertical'
+            
+            MDRectangleFlatButton:
+                text: "Add Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Add_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Remove Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Remove_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Update Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Update_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Attendence Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Attendence_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Faculty Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Faculty_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Master Department"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Master_Panel"
+                    root.manager.transition.direction = 'left'
+            MDIconButton:
+                icon:"backspace"
+                on_release:
+                    app.root.current = "Admin_Panel"
+                    root.manager.transition.direction = 'left'
+        MDCard:
+            size_hint: .8,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,182/225)
+            orientation: 'vertical'
+            
+            MDCard:
+                pos_hint: {"center_x": 0.5 ,"center_y": 0.5}            
+                size_hint: .96,.9
+                padding: 12
+                spacing: 12
+                md_bg_color:(215/225,215/225,215/225)
+                orientation: 'vertical'
+                        
+                MDRectangleFlatButton:
+                    text:"Faculty Records"
+                    font_size: 25 
+                    pos_hint:{'center_x': .5}
+                    on_press:
+                        app.add_Datatable()
+
+                AnchorLayout:
+                    id: table
+                MDIconButton:
+                    icon: "trash-can"
+                    pos_hint: {"center_x": 0.5 }
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.show_alert_dialog()
+
+    MDIconButton:
+        icon: "account-multiple-plus"
+        pos_hint:{"center_x":.9,"center_y":.93}
+        md_bg_color: app.theme_cls.primary_color
+        theme_icon_color:"Custom"
+        icon_color:(215/225,215/225,215/225)
+        on_release:
+            app.root.current = "Add_Faculty"
+            root.manager.transition.direction = 'left'
+
+    MDIconButton:
+        icon: "account-edit"
+        pos_hint:{"center_x":.95,"center_y":.93}
+        md_bg_color: app.theme_cls.primary_color
+        theme_icon_color:"Custom"
+        icon_color:(215/225,215/225,215/225)
+        on_release:
+            app.root.current = "Update_Faculty"
+            root.manager.transition.direction = 'left'
+
+<Screen_Attendence_Record>:
+    name: 'Attendence_Record'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDCard:
+            size_hint: .2,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,112/225,.15)
+            orientation: 'vertical'
+            
+            MDRectangleFlatButton:
+                text: "Add Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Add_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Remove Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Remove_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Update Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Update_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Attendence Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Attendence_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Faculty Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Faculty_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Master Department"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Master_Panel"
+                    root.manager.transition.direction = 'left'
+            MDIconButton:
+                icon:"backspace"
+                on_release:
+                    app.root.current = "Admin_Panel"
+                    root.manager.transition.direction = 'left'
+        MDCard:
+            size_hint: .8,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,182/225)
+            orientation: 'vertical'
+            
+            MDCard:
+                pos_hint: {"center_x": 0.5 ,"center_y": 0.5}            
+                size_hint: .96,.9
+                padding: 12
+                spacing: 12
+                md_bg_color:(215/225,215/225,215/225)
+                orientation: 'vertical'
+
+                MDTextField:
+                    mode: "round"
+                    id: Attendence_Date
+                    hint_text: "Format:YYYY-MM-DD"
+                    icon_right: "calendar-account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20
+
+                MDRectangleFlatButton:
+                    text:"Attendence Records"
+                    font_size: 25 
+                    pos_hint:{'center_x': .5}
+                    on_press:
+                        app.Add_Attendence_Table()
+                
+                AnchorLayout:
+                    id: table
+                MDIconButton:
+                    icon: "trash-can"
+                    pos_hint: {"center_x": 0.5 }
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.Attendence_show_alert_dialog()
+
+<Screen_Camera_Panel>:
+    name: 'Camera_Panel'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    
+    AnchorLayout:
+        id:camera
+        pos_hint:{'center_x': .5,'center_x': .5}
+        size_hint: .8,.8
+    
+    MDRaisedButton:
+        text:"Start"
+        font_size: 25 
+        pos_hint:{'center_x': .36}
+        on_press:
+            app.Camera_Start()
+    MDRaisedButton:
+        text:"Back"
+        font_size: 25 
+        pos_hint:{'center_x': .5}
+        on_press:
+            app.root.current = "Function"
+            root.manager.transition.direction = 'up'
+    MDRaisedButton:
+        text:"Stop"
+        font_size: 25 
+        pos_hint:{'center_x': .64}
+        on_press:
+            app.Camera_Stop()
+    
+<Screen_Master_Panel>:
+    name: 'Master_Panel'            
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.jpg'
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDCard:
+            size_hint: .2,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,112/225,.15)
+            orientation: 'vertical'
+            
+            MDRectangleFlatButton:
+                text: "Add Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Add_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Remove Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Remove_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Update Faculty"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Update_Faculty"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Attendence Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Attendence_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Faculty Record"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Faculty_Record"
+                    root.manager.transition.direction = 'left'
+            MDRectangleFlatButton:
+                text: "Master Department"
+                font_size:20
+                size_hint: .9,.1
+                on_release:
+                    app.root.current = "Master_Panel"
+                    root.manager.transition.direction = 'left'
+            MDIconButton:
+                icon:"backspace"
+                on_release:
+                    app.root.current = "Admin_Panel"
+                    root.manager.transition.direction = 'left'
+                    
+        MDCard:
+            size_hint: .8,1
+            pos_hint: {"center_x": 0 ,"center_y": 0.5}
+            padding: 12
+            spacing: 12
+            md_bg_color:(130/225,70/225,182/225)
+            orientation: 'vertical'
+            
+            MDCard:
+                pos_hint: {"center_x": 0.5 ,"center_y": 0.5}            
+                size_hint: .96,.9
+                padding: 12
+                spacing: 12
+                md_bg_color:(215/225,215/225,215/225)
+                orientation: 'vertical'
+
+                MDRectangleFlatButton:
+                    text:"Departments"
+                    font_size: 25 
+                    pos_hint:{'center_x': .5}
+                    on_press:
+                        app.Master_Department()
+                MDTextField:
+                    mode: "round"
+                    id: department_name
+                    hint_text: "Name"
+                    icon_right: "account"
+                    size_hint_x: None
+                    theme_text_color: 'Custom'
+                    text_color:(2/255, 23/255, 12/255,1)
+                    width: 200
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5 ,"center_y": 0.5}
+                    spacing: 20   
+                
+                MDIconButton:
+                    icon: "account-multiple-plus"
+                    pos_hint: {"center_x": 0.5 }
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.master_addon()
+
+                AnchorLayout:
+                    id: table
+                MDIconButton:
+                    icon: "trash-can"
+                    pos_hint: {"center_x": 0.5 }
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.master_show_alert_dialog()
